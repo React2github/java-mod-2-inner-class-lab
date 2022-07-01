@@ -32,6 +32,7 @@ public class StudentGradeTranslator {
     interface GradeCalculator {
         public String getLetterGrade(int numberGrade);
         public boolean isPassingGrade(int numberGrade);
+        public int howManyForNextLetter(int numberGrade);
     }
 
 
@@ -56,6 +57,23 @@ public class StudentGradeTranslator {
         if (numberGrade >= 60) return true;
         return false;
     }
+
+    public int howManyForNextLetter(int numberGrade) {
+        if (numberGrade < 60) {
+            return (60-numberGrade);
+         }
+         if (numberGrade < 70) {
+            return (70-numberGrade);
+         }
+         if (numberGrade < 80) {
+            return (80-numberGrade);
+         }
+         if (numberGrade < 90) {
+            return (90-numberGrade);
+         }
+         int difference = (100-numberGrade);
+        return difference;
+    }
 }
 
 class SlightCurveGradeCalculator implements GradeCalculator {
@@ -79,8 +97,24 @@ class SlightCurveGradeCalculator implements GradeCalculator {
             if (numberGrade >= 55) return true;
             return false;
         }
-    }
 
+        public int howManyForNextLetter(int numberGrade) {
+        if (numberGrade < 55) {
+            return (55-numberGrade);
+         }
+         if (numberGrade < 65) {
+            return (65-numberGrade);
+         }
+         if (numberGrade < 75) {
+            return (75-numberGrade);
+         }
+         if (numberGrade < 85) {
+            return (85-numberGrade);
+         }
+         int difference = (95-numberGrade);
+        return difference;
+    }
+}
     class HeavyCurveGradeCalculator implements GradeCalculator {
         public String getLetterGrade(int numberGrade) {
             if (numberGrade < 50) {
@@ -101,25 +135,27 @@ class SlightCurveGradeCalculator implements GradeCalculator {
             if (numberGrade >= 50) return true;
             return false;
         }
+
+        public int howManyForNextLetter(int numberGrade) {
+            if (numberGrade < 50) {
+                return (50-numberGrade);
+             }
+             if (numberGrade < 60) {
+                return (60-numberGrade);
+             }
+             if (numberGrade < 70) {
+                return (70-numberGrade);
+             }
+             if (numberGrade < 80) {
+                return (80-numberGrade);
+             }
+             int difference = (90-numberGrade);
+            return difference;
     }
 
-     public int howManyForNextLetter(int numberGrade) {
-        if (numberGrade < 60) {
-            return (60-numberGrade);
-         }
-         if (numberGrade < 70) {
-            return (70-numberGrade);
-         }
-         if (numberGrade < 80) {
-            return (80-numberGrade);
-         }
-         if (numberGrade < 90) {
-            return (90-numberGrade);
-         }
-         int difference = (100-numberGrade);
-        return difference;
     }
-
-
+    public int howManyForNextLetter(int numberGrade) {
+        return gradeCalculator.howManyForNextLetter(numberGrade);
+    }
 
 };
